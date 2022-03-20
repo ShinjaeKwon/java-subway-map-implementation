@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import subway.domain.Station;
 
@@ -30,5 +31,20 @@ public class StationRepository {
 
 	public static boolean deleteStation(String name) {
 		return stations.removeIf(station -> Objects.equals(station.getName(), name));
+	}
+
+	public static List<Station> makeLineList(String ascend, String descend) {
+		int ascendIdx = -1;
+		int descendIdx = -1;
+		for (int i = 0; i < stations.size(); i++) {
+			if(stations.get(i).getName().equals(ascend)){
+				ascendIdx = i;
+			}
+			if(stations.get(i).getName().equals(descend)){
+				descendIdx = i;
+			}
+		}
+		//check idx = -1 -> Exception
+		return new ArrayList(stations.subList(ascendIdx, descendIdx));
 	}
 }

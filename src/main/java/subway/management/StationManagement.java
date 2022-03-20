@@ -22,12 +22,15 @@ public class StationManagement {
 		PrintHandler.printStations(stationRepository.stations());
 	}
 
-	public static boolean deleteStation() {
+	public static void deleteStation() {
 		PrintHandler.printDeleteStation();
 		String inputStationName = InputHandler.input();
 		//inputStationName check
+		if (!stationRepository.deleteStation(inputStationName)) {
+			//exception
+			return;
+		}
 		PrintHandler.printSuccessDeleteStation();
-		return stationRepository.deleteStation(inputStationName);
 	}
 
 	public static void selectStationManagement() {

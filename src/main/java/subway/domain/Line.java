@@ -1,15 +1,27 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
-    private String name;
+	private String name;
 
-    public Line(String name) {
-        this.name = name;
-    }
+	private List<Station> stationList;
 
-    public String getName() {
-        return name;
-    }
+	public Line(String name) {
+		this.name = name;
+		this.stationList = new ArrayList<>();
+	}
 
-    // 추가 기능 구현
+	public String getName() {
+		return name;
+	}
+
+	public List<Station> getStationList() {
+		return stationList;
+	}
+
+	public void addStationList(Station station) {
+		stationList.add(station);
+	}
 }
