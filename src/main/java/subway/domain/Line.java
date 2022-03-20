@@ -21,7 +21,7 @@ public class Line {
 		return stationList;
 	}
 
-	public void addStationList(Station station) {
+	public void addStation(Station station) {
 		stationList.add(station);
 	}
 }

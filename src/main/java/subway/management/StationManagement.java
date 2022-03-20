@@ -1,5 +1,6 @@
 package subway.management;
 
+import subway.check.FormChecking;
 import subway.domain.Station;
 import subway.domain.menu.StationMenu;
 import subway.handler.InputHandler;
@@ -8,12 +9,19 @@ import subway.repository.StationRepository;
 
 public class StationManagement {
 
-	private static StationRepository stationRepository = new StationRepository();
+	private static final StationRepository stationRepository = new StationRepository();
 
 	public static void addStation() {
 		PrintHandler.printInputAddStation();
 		String inputStationName = InputHandler.input();
-		//inputStationName check
+		if (FormChecking.checkStationLength(inputStationName)) {
+			PrintHandler.printStationLengthError();
+			return;
+		}
+		if (stationRepository.findStationName(inputStationName)) {
+			PrintHandler.printAlreadyStationName();
+			return;
+		}
 		stationRepository.addStation(new Station(inputStationName));
 		PrintHandler.printSuccessAddStation();
 	}
@@ -25,9 +33,8 @@ public class StationManagement {
 	public static void deleteStation() {
 		PrintHandler.printDeleteStation();
 		String inputStationName = InputHandler.input();
-		//inputStationName check
 		if (!stationRepository.deleteStation(inputStationName)) {
-			//exception
+			PrintHandler.printNotExistStation();
 			return;
 		}
 		PrintHandler.printSuccessDeleteStation();
@@ -38,7 +45,9 @@ public class StationManagement {
 		PrintHandler.printSelect();
 		StationMenu selectMenu = StationMenu.findStationMenu(InputHandler.input());
 		if (selectMenu == null) {
-			//TODO exception 발생
+			PrintHandler.printNotSelectMenu();
+			selectStationManagement();
+			return;
 		}
 		selectMenu.selectMenu();
 	}

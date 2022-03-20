@@ -17,7 +17,7 @@ public enum LineMenu {
 		}
 	}, BACK("B") {
 		public void selectMenu() {
-			//Q. 종료
+			return;
 		}
 	};
 

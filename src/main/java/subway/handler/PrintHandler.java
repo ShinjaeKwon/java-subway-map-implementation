@@ -37,6 +37,13 @@ public class PrintHandler {
 	private static final String INPUT_ADD_LINE_DESCEND = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 	private static final String INPUT_ADD_LINE_ASCEND = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
 	private static final String PREFIX_INFO = "[INFO] ";
+	private static final String ERROR_LINE_LENGTH = "[ERROR] 노선 이름은 두글자 이상이여야 합니다.\n";
+	private static final String ERROR_STATION_LENGTH = "[ERROR] 역 이름은 두글자 이상이여야 합니다.\n";
+	private static final String ALREADY_STATION_NAME = "[ERROR] 이미 등록된 역 이름입니다.\n";
+	private static final String ALREADY_LINE_NAME = "[ERROR] 이미 등록된 노선 이름입니다.\n";
+	private static final String NOT_SELECT_MENU = "[ERROR] 선택할 수 없는 기능입니다.\n";
+	private static final String NOT_EXIST_LINE = "[ERROR] 존재하지 않는 노선입니다.\n";
+	private static final String NOT_EXIST_STATION = "[ERROR] 존재하지 않는 역입니다.\n";
 
 	public static void printMenu() {
 		System.out.println(MAIN_MENU);
@@ -104,5 +111,33 @@ public class PrintHandler {
 		System.out.println(LINES_PRINT_START);
 		lines.forEach(line -> System.out.println(PREFIX_INFO + line.getName()));
 		System.out.println();
+	}
+
+	public static void printLineLengthError() {
+		System.out.println(ERROR_LINE_LENGTH);
+	}
+
+	public static void printStationLengthError() {
+		System.out.println(ERROR_STATION_LENGTH);
+	}
+
+	public static void printAlreadyStationName() {
+		System.out.println(ALREADY_STATION_NAME);
+	}
+
+	public static void printAlreadyLineName() {
+		System.out.println(ALREADY_LINE_NAME);
+	}
+
+	public static void printNotSelectMenu() {
+		System.out.println(NOT_SELECT_MENU);
+	}
+
+	public static void printNotExistLine() {
+		System.out.println(NOT_EXIST_LINE);
+	}
+
+	public static void printNotExistStation() {
+		System.out.println(NOT_EXIST_STATION);
 	}
 }

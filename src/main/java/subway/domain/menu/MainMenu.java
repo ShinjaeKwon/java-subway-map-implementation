@@ -22,7 +22,7 @@ public enum MainMenu {
 		}
 	}, QUIT("Q") {
 		public void selectMenu() {
-			//Q. 종료
+			System.exit(0);
 		}
 	};
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import subway.domain.Station;
 
@@ -21,30 +20,24 @@ public class StationRepository {
 		stations.add(new Station("매봉역"));
 	}
 
-	public static List<Station> stations() {
+	public List<Station> stations() {
 		return Collections.unmodifiableList(stations);
 	}
 
-	public static void addStation(Station station) {
+	public void addStation(Station station) {
 		stations.add(station);
 	}
 
-	public static boolean deleteStation(String name) {
+	public boolean deleteStation(String name) {
 		return stations.removeIf(station -> Objects.equals(station.getName(), name));
 	}
 
-	public static List<Station> makeLineList(String ascend, String descend) {
-		int ascendIdx = -1;
-		int descendIdx = -1;
-		for (int i = 0; i < stations.size(); i++) {
-			if(stations.get(i).getName().equals(ascend)){
-				ascendIdx = i;
-			}
-			if(stations.get(i).getName().equals(descend)){
-				descendIdx = i;
-			}
-		}
-		//check idx = -1 -> Exception
-		return new ArrayList(stations.subList(ascendIdx, descendIdx));
+	public boolean findStationName(String name) {
+		return stations.stream().anyMatch(station -> station.getName().equals(name));
 	}
+
+	public static Station findStation(String name) {
+		return stations.stream().filter(station -> station.getName().equals(name)).findFirst().orElse(null);
+	}
+
 }
