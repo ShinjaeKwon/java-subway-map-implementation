@@ -52,6 +52,4 @@ public class StationManagement {
 		selectMenu.selectMenu();
 	}
 
-	public static void selectSectionManagement() {
-	}
 }
