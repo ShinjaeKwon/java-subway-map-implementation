@@ -19,7 +19,7 @@ public enum MainMenu {
 		}
 	}, FORE("4") {
 		public void selectMenu() {
-			// 4. 지하철 노선도 출력
+			SectionManagement.printSubwayRouteMap();
 		}
 	}, QUIT("Q") {
 		public void selectMenu() {

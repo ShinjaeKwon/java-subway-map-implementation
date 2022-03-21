@@ -1,5 +1,7 @@
 package subway.management;
 
+import java.util.List;
+
 import subway.check.FormChecking;
 import subway.domain.Line;
 import subway.domain.Station;
@@ -109,4 +111,19 @@ public class SectionManagement {
 		}
 		selectMenu.selectMenu();
 	}
+
+	public static void printSubwayRouteMap() {
+		List<Line> lines = LineRepository.getLines();
+		PrintHandler.printSubwayRootMap();
+		for (Line line : lines) {
+			PrintHandler.printSubwayRootMapToLine(line);
+			PrintHandler.printDividingLine();
+			List<Station> stationList = line.getStationList();
+			for (Station station : stationList) {
+				PrintHandler.printSubWayRootMapToStation(station);
+			}
+			System.out.println();
+		}
+	}
+
 }

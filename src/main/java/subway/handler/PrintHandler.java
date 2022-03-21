@@ -27,27 +27,29 @@ public class PrintHandler {
 		+ "1. 구간 등록\n"
 		+ "2. 구간 삭제\n"
 		+ "B. 돌아가기\n";
+	private static final String PREFIX_INFO = "[INFO] ";
+	private static final String DIVIDING_LINE = "---";
 	private static final String STATIONS_PRINT_START = "## 역 목록";
 	private static final String SELECT_MENU = "## 원하는 기능을 선택하세요.";
-	private static final String INPUT_ADD_STATION = "## 등록할 역 이름을 입력하세요.";
+	private static final String LINES_PRINT_START = "## 노선 목록";
+	private static final String SUBWAY_ROOT_MAP_PRINT_START = "## 지하철 노선도";
 	private static final String DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
+	private static final String DELETE_SECTION_IN_LINE = "## 삭제할 구간의 노선을 입력하세요.";
+	private static final String DELETE_STATION_IN_LINE = "## 삭제할 구간의 역을 입력하세요.";
+	private static final String DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
 	private static final String SUCCESS_DELETE_STATION = "지하철 역이 삭제되었습니다.\n";
 	private static final String SUCCESS_ADD_STATION = "지하철 역이 등록되었습니다.\n";
 	private static final String SUCCESS_ADD_SECTION = "구간이 등록되었습니다.\n";
-	private static final String INPUT_ADD_LINE = "## 등록할 노선 이름을 입력하세요";
-	private static final String LINES_PRINT_START = "## 노선 목록";
-	private static final String DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
+	private static final String SUCCESS_DELETE_STATION_IN_LINE = "구간이 삭제되었습니다.\n";
 	private static final String SUCCESS_DELETE_LINE = "지하철 노선이 삭제되었습니다.\n";
 	private static final String SUCCESS_ADD_LINE = "지하철 노선이 등록되었습니다.\n";
+	private static final String INPUT_ADD_STATION = "## 등록할 역 이름을 입력하세요.";
 	private static final String INPUT_ADD_LINE_DESCEND = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 	private static final String INPUT_ADD_LINE_ASCEND = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-	private static final String PREFIX_INFO = "[INFO] ";
 	private static final String INPUT_LINE = "## 노선을 입력하세요.";
 	private static final String INPUT_STATION = "## 역이름을 입력하세요.";
 	private static final String INPUT_STATION_ORDER = "## 순서를 입력하세요.";
-	private static final String DELETE_SECTION_IN_LINE = "## 삭제할 구간의 노선을 입력하세요.";
-	private static final String DELETE_STATION_IN_LINE = "## 삭제할 구간의 역을 입력하세요.";
-	private static final String SUCCESS_DELETE_STATION_IN_LINE = "구간이 삭제되었습니다.\n";
+	private static final String INPUT_ADD_LINE = "## 등록할 노선 이름을 입력하세요";
 	private static final String ERROR_LINE_LENGTH = "[ERROR] 노선 이름은 두글자 이상이여야 합니다.\n";
 	private static final String ERROR_STATION_LENGTH = "[ERROR] 역 이름은 두글자 이상이여야 합니다.\n";
 	private static final String ERROR_ALREADY_STATION_NAME = "[ERROR] 이미 등록된 역 이름입니다.\n";
@@ -197,5 +199,21 @@ public class PrintHandler {
 
 	public static void printDeleteStationInLineError() {
 		System.out.println(ERROR_FAILED_DELETE_STATION_IN_LINE);
+	}
+
+	public static void printSubwayRootMap() {
+		System.out.println(SUBWAY_ROOT_MAP_PRINT_START);
+	}
+
+	public static void printSubwayRootMapToLine(Line line) {
+		System.out.println(PREFIX_INFO + line.getName());
+	}
+
+	public static void printDividingLine() {
+		System.out.println(PREFIX_INFO + DIVIDING_LINE);
+	}
+
+	public static void printSubWayRootMapToStation(Station station) {
+		System.out.println(PREFIX_INFO + station.getName());
 	}
 }

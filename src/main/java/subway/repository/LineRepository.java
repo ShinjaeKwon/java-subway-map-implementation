@@ -21,10 +21,14 @@ public class LineRepository {
 		initLine();
 	}
 
+	public static List<Line> getLines() {
+		return lines;
+	}
+
 	private static void initLine() {
 		Line line2 = findLine("2호선");
-		Line line3 = findLine("2호선");
-		Line shinBunDangLine = findLine("2호선");
+		Line line3 = findLine("3호선");
+		Line shinBunDangLine = findLine("신분당선");
 		addStationInLine(findStation("교대역"), findStation("역삼역"), line2.getName());
 		line2.addStationOrder(findStation("강남역"), 1);
 		addStationInLine(findStation("교대역"), findStation("매봉역"), line3.getName());
