@@ -53,15 +53,49 @@ public class SectionManagement {
 	private static String addSectionSetLine() {
 		PrintHandler.printInputLine();
 		String inputLineName = InputHandler.input();
+		if (isExistLine(inputLineName))
+			return null;
+		return inputLineName;
+	}
+
+	private static boolean isExistLine(String inputLineName) {
 		if (!FormChecking.checkExistLine(inputLineName)) {
 			PrintHandler.printNotExistLine();
+			return true;
+		}
+		return false;
+	}
+
+	public static String deleteSectionCheckLine() {
+		PrintHandler.printDeleteLineInSection();
+		String inputLineName = InputHandler.input();
+		if (isExistLine(inputLineName)) {
 			return null;
 		}
 		return inputLineName;
 	}
 
-	public static void deleteStationByNameInSection() {
+	private static String deleteSectionCheckStation() {
+		PrintHandler.printDeleteStationInLine();
+		String inputStationName = InputHandler.input();
+		if (!FormChecking.checkExistStation(inputStationName)) {
+			PrintHandler.printNotExistStation();
+			return null;
+		}
+		return inputStationName;
+	}
 
+	public static void deleteStationByNameInSection() {
+		String inputLineName = deleteSectionCheckLine();
+		String inputStationName = addSectionSetStation();
+
+		if (FormChecking.checkSectionInLineLength(inputLineName)) {
+			PrintHandler.printDeleteStationInLineError();
+		}
+		Line deleteLine = LineRepository.findLine(inputLineName);
+		Station deleteStation = StationRepository.findStation(inputStationName);
+		LineRepository.deleteStationInLine(deleteLine, deleteStation);
+		PrintHandler.printSuccessDeleteStationInLine();
 	}
 
 	public static void selectSectionManagement() {

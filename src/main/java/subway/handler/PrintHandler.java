@@ -33,7 +33,7 @@ public class PrintHandler {
 	private static final String DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
 	private static final String SUCCESS_DELETE_STATION = "지하철 역이 삭제되었습니다.\n";
 	private static final String SUCCESS_ADD_STATION = "지하철 역이 등록되었습니다.\n";
-	private static final String SUCCESS_ADD_SECTION = "구간이 등록되었습니다.";
+	private static final String SUCCESS_ADD_SECTION = "구간이 등록되었습니다.\n";
 	private static final String INPUT_ADD_LINE = "## 등록할 노선 이름을 입력하세요";
 	private static final String LINES_PRINT_START = "## 노선 목록";
 	private static final String DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
@@ -45,6 +45,9 @@ public class PrintHandler {
 	private static final String INPUT_LINE = "## 노선을 입력하세요.";
 	private static final String INPUT_STATION = "## 역이름을 입력하세요.";
 	private static final String INPUT_STATION_ORDER = "## 순서를 입력하세요.";
+	private static final String DELETE_SECTION_IN_LINE = "## 삭제할 구간의 노선을 입력하세요.";
+	private static final String DELETE_STATION_IN_LINE = "## 삭제할 구간의 역을 입력하세요.";
+	private static final String SUCCESS_DELETE_STATION_IN_LINE = "구간이 삭제되었습니다.\n";
 	private static final String ERROR_LINE_LENGTH = "[ERROR] 노선 이름은 두글자 이상이여야 합니다.\n";
 	private static final String ERROR_STATION_LENGTH = "[ERROR] 역 이름은 두글자 이상이여야 합니다.\n";
 	private static final String ERROR_ALREADY_STATION_NAME = "[ERROR] 이미 등록된 역 이름입니다.\n";
@@ -54,6 +57,7 @@ public class PrintHandler {
 	private static final String ERROR_NOT_EXIST_STATION = "[ERROR] 존재하지 않는 역입니다.\n";
 	private static final String ERROR_NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.\n";
 	private static final String ERROR_NOT_ADD_SECTION = "[ERROR] 종점 전,후의 위치에는 역을 추가할 수 없습니다.\n";
+	private static final String ERROR_FAILED_DELETE_STATION_IN_LINE = "[ERROR] 노선에 포함된 역이 두개 이하입니다.\n";
 
 	public static void printMenu() {
 		System.out.println(MAIN_MENU);
@@ -179,4 +183,19 @@ public class PrintHandler {
 		System.out.println(ERROR_NOT_ADD_SECTION);
 	}
 
+	public static void printDeleteLineInSection() {
+		System.out.println(DELETE_SECTION_IN_LINE);
+	}
+
+	public static void printDeleteStationInLine() {
+		System.out.println(DELETE_STATION_IN_LINE);
+	}
+
+	public static void printSuccessDeleteStationInLine() {
+		System.out.println(PREFIX_INFO + SUCCESS_DELETE_STATION_IN_LINE);
+	}
+
+	public static void printDeleteStationInLineError() {
+		System.out.println(ERROR_FAILED_DELETE_STATION_IN_LINE);
+	}
 }

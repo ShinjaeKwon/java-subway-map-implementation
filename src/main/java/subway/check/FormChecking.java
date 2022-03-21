@@ -1,5 +1,6 @@
 package subway.check;
 
+import subway.domain.Line;
 import subway.domain.Station;
 import subway.handler.PrintHandler;
 import subway.repository.LineRepository;
@@ -9,7 +10,7 @@ public class FormChecking {
 
 	private static final int LENGTH_STANDARD = 2;
 
-	public static boolean checkLineLength(String input) {
+	public static boolean checkLineNameLength(String input) {
 		return input.length() < LENGTH_STANDARD;
 	}
 
@@ -58,4 +59,8 @@ public class FormChecking {
 
 	}
 
+	public static boolean checkSectionInLineLength(String inputLineName) {
+		Line checkLine = LineRepository.findLine(inputLineName);
+		return checkLine.getStationList().size() <= 2;
+	}
 }

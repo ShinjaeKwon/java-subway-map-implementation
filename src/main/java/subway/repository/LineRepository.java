@@ -34,6 +34,11 @@ public class LineRepository {
 		shinBunDangLine.addStationOrder(findStation("양재역"), 1);
 	}
 
+	public static void deleteStationInLine(Line deleteLine, Station deleteStation) {
+		List<Station> stationList = deleteLine.getStationList();
+		stationList.remove(deleteStation);
+	}
+
 	public List<Line> lines() {
 		return Collections.unmodifiableList(lines);
 	}

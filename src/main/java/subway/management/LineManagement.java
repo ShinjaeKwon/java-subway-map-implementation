@@ -16,7 +16,7 @@ public class LineManagement {
 	public static void addLine() {
 		PrintHandler.printInputAddLine();
 		String inputLineName = InputHandler.input();
-		if (FormChecking.checkLineLength(inputLineName)) {
+		if (FormChecking.checkLineNameLength(inputLineName)) {
 			PrintHandler.printLineLengthError();
 			return;
 		}
