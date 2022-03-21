@@ -20,14 +20,12 @@ public class SectionManagement {
 		if (FormChecking.checkNull(inputLineName, inputStationName, order)) {
 			return;
 		}
-
 		Line line = LineRepository.findLine(inputLineName);
 		Station station = StationRepository.findStation(inputStationName);
 		if (order >= line.getStationList().size() || order < 1) {
 			PrintHandler.printAddSectionError();
 			return;
 		}
-		// 갈래길 체크
 		line.addStationOrder(station, order);
 		PrintHandler.printSuccessAddSection();
 	}
