@@ -18,7 +18,7 @@ public class StationManagement {
 			PrintHandler.printStationLengthError();
 			return;
 		}
-		if (stationRepository.findStationName(inputStationName)) {
+		if (stationRepository.findExistStationName(inputStationName)) {
 			PrintHandler.printAlreadyStationName();
 			return;
 		}
@@ -52,4 +52,6 @@ public class StationManagement {
 		selectMenu.selectMenu();
 	}
 
+	public static void selectSectionManagement() {
+	}
 }

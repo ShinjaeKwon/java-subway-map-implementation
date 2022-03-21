@@ -1,5 +1,7 @@
 package subway.repository;
 
+import static subway.repository.StationRepository.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +14,7 @@ public class LineRepository {
 
 	private static final List<Line> lines = new ArrayList<>();
 
-	public LineRepository() {
+	public static void init() {
 		lines.add(new Line("2호선"));
 		lines.add(new Line("3호선"));
 		lines.add(new Line("신분당선"));
@@ -22,17 +24,14 @@ public class LineRepository {
 	private static void initLine() {
 		Line line2 = findLine("2호선");
 		Line line3 = findLine("2호선");
-		Line shinbundangLine = findLine("2호선");
-		line2.addStation(StationRepository.findStation("교대역"));
-		line2.addStation(StationRepository.findStation("강남역"));
-		line2.addStation(StationRepository.findStation("역삼역"));
-		line3.addStation(StationRepository.findStation("교대역"));
-		line3.addStation(StationRepository.findStation("남부터미널역"));
-		line3.addStation(StationRepository.findStation("양재역"));
-		line3.addStation(StationRepository.findStation("매봉역"));
-		shinbundangLine.addStation(StationRepository.findStation("강남역"));
-		shinbundangLine.addStation(StationRepository.findStation("양재역"));
-		shinbundangLine.addStation(StationRepository.findStation("양재시민의숲역"));
+		Line shinBunDangLine = findLine("2호선");
+		addStationInLine(findStation("교대역"), findStation("역삼역"), line2.getName());
+		line2.addStationOrder(findStation("강남역"), 1);
+		addStationInLine(findStation("교대역"), findStation("매봉역"), line3.getName());
+		line3.addStationOrder(findStation("남부터미널역"), 1);
+		line3.addStationOrder(findStation("양재역"), 2);
+		addStationInLine(findStation("강남역"), findStation("양재시민의숲역"), shinBunDangLine.getName());
+		shinBunDangLine.addStationOrder(findStation("양재역"), 1);
 	}
 
 	public List<Line> lines() {
@@ -47,7 +46,7 @@ public class LineRepository {
 		return lines.removeIf(line -> Objects.equals(line.getName(), name));
 	}
 
-	public void addStationInLine(Station ascend, Station descend, String lineName) {
+	public static void addStationInLine(Station ascend, Station descend, String lineName) {
 		for (Line line : lines) {
 			if (line.getName().equals(lineName)) {
 				line.addStation(ascend);
@@ -60,7 +59,7 @@ public class LineRepository {
 		return lines.stream().filter(station -> station.getName().equals(lineName)).findFirst().orElse(null);
 	}
 
-	public boolean findLineName(String name) {
+	public static boolean findExistLineName(String name) {
 		return lines.stream().anyMatch(line -> line.getName().equals(name));
 	}
 

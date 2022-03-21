@@ -1,6 +1,7 @@
 package subway.domain.menu;
 
 import subway.management.LineManagement;
+import subway.management.SectionManagement;
 import subway.management.StationManagement;
 
 public enum MainMenu {
@@ -14,7 +15,7 @@ public enum MainMenu {
 		}
 	}, THREE("3") {
 		public void selectMenu() {
-			// 3. 구간 관리
+			SectionManagement.selectSectionManagement();
 		}
 	}, FORE("4") {
 		public void selectMenu() {

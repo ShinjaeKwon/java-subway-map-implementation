@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import subway.domain.Line;
 import subway.domain.Station;
 
 public class StationRepository {
+
 	private static final List<Station> stations = new ArrayList<>();
 
-	public StationRepository() {
+	public static void init() {
 		stations.add(new Station("교대역"));
 		stations.add(new Station("강남역"));
 		stations.add(new Station("역삼역"));
@@ -18,6 +20,15 @@ public class StationRepository {
 		stations.add(new Station("양재역"));
 		stations.add(new Station("양재시민의숲역"));
 		stations.add(new Station("매봉역"));
+		LineRepository.init();
+	}
+
+	public static Station getAscendStation(Line line) {
+		return line.getStationList().get(0);
+	}
+
+	public static Station getDescendStation(Line line) {
+		return line.getStationList().get(line.getStationList().size() - 1);
 	}
 
 	public List<Station> stations() {
@@ -32,7 +43,7 @@ public class StationRepository {
 		return stations.removeIf(station -> Objects.equals(station.getName(), name));
 	}
 
-	public boolean findStationName(String name) {
+	public static boolean findExistStationName(String name) {
 		return stations.stream().anyMatch(station -> station.getName().equals(name));
 	}
 

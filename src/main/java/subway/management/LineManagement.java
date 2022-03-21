@@ -20,7 +20,7 @@ public class LineManagement {
 			PrintHandler.printLineLengthError();
 			return;
 		}
-		if (lineRepository.findLineName(inputLineName)) {
+		if (lineRepository.findExistLineName(inputLineName)) {
 			PrintHandler.printAlreadyLineName();
 			return;
 		}
@@ -36,7 +36,7 @@ public class LineManagement {
 		String descendName = InputHandler.input();
 		Station ascend = StationRepository.findStation(ascendName);
 		Station descend = StationRepository.findStation(descendName);
-		if (!FormChecking.nullCheck(ascend, descend)) {
+		if (!FormChecking.nullCheckAscendAndDescend(ascend, descend)) {
 			return;
 		}
 		lineRepository.addStationInLine(ascend, descend, line.getName());

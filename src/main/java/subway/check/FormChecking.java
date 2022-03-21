@@ -2,6 +2,8 @@ package subway.check;
 
 import subway.domain.Station;
 import subway.handler.PrintHandler;
+import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 
 public class FormChecking {
 
@@ -15,7 +17,18 @@ public class FormChecking {
 		return input.length() < LENGTH_STANDARD;
 	}
 
-	public static boolean nullCheck(Station ascend, Station descend) {
+	public static boolean checkNull(Object input) {
+		return input == null;
+	}
+
+	public static boolean checkNull(String inputLineName, String inputStationName, Integer order) {
+		if (checkNull(inputLineName) || checkNull(inputStationName) || checkNull(order)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean nullCheckAscendAndDescend(Station ascend, Station descend) {
 		if (ascend == null) {
 			PrintHandler.printNotExistStation();
 			return false;
@@ -26,4 +39,23 @@ public class FormChecking {
 		}
 		return true;
 	}
+
+	public static boolean checkExistLine(String inputLineName) {
+		return LineRepository.findExistLineName(inputLineName);
+	}
+
+	public static boolean checkExistStation(String inputStationName) {
+		return StationRepository.findExistStationName(inputStationName);
+	}
+
+	public static boolean checkNumber(String inputNumber) {
+		try {
+			Integer.parseInt(inputNumber);
+			return true;
+		} catch (NumberFormatException exception) {
+			return false;
+		}
+
+	}
+
 }
