@@ -87,7 +87,7 @@ public class SectionManagement {
 
 	public static void deleteStationByNameInSection() {
 		String inputLineName = deleteSectionCheckLine();
-		String inputStationName = addSectionSetStation();
+		String inputStationName = deleteSectionCheckStation();
 
 		if (FormChecking.checkSectionInLineLength(inputLineName)) {
 			PrintHandler.printDeleteStationInLineError();
