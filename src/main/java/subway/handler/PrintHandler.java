@@ -120,8 +120,6 @@ public class PrintHandler {
 		System.out.println();
 	}
 
-
-
 	public static void printSubwayRootMap() {
 		System.out.println(SUBWAY_ROOT_MAP_PRINT_START);
 	}
@@ -178,4 +176,7 @@ public class PrintHandler {
 		System.out.println(ErrorView.ERROR_NOT_EXIST_STATION);
 	}
 
+	public static void printForkedLoadError() {
+		System.out.println(ErrorView.ERROR_FORKED_LOAD);
+	}
 }

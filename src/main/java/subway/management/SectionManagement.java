@@ -17,17 +17,35 @@ public class SectionManagement {
 		String inputLineName = addSectionSetLine();
 		String inputStationName = addSectionSetStation();
 		Integer order = addSectionSetOrder();
-		if (FormChecking.checkNull(inputLineName, inputStationName, order)) {
-			return;
-		}
 		Line line = LineRepository.findLine(inputLineName);
 		Station station = StationRepository.findStation(inputStationName);
-		if (order >= line.getStationList().size() || order < 1) {
-			PrintHandler.printAddSectionError();
+		if (FormChecking.checkNull(inputLineName, inputStationName, order) || checkLastStation(order, line)
+			|| !checkForkedLoad(station)) {
 			return;
 		}
 		line.addStationOrder(station, order);
 		PrintHandler.printSuccessAddSection();
+	}
+
+	private static boolean checkLastStation(Integer order, Line line) {
+		if (order >= line.getStationList().size() || order < 1) {
+			PrintHandler.printAddSectionError();
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean checkForkedLoad(Station inputStation) {
+		List<Line> lines = LineRepository.getLines();
+		for (Line line : lines) {
+			List<Station> stationList = line.getStationList();
+			if (stationList.get(0).equals(inputStation) || stationList.get(stationList.size() - 1)
+				.equals(inputStation)) {
+				return true;
+			}
+		}
+		PrintHandler.printForkedLoadError();
+		return false;
 	}
 
 	private static Integer addSectionSetOrder() {
