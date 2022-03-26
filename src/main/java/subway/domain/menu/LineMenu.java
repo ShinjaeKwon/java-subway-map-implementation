@@ -3,15 +3,15 @@ package subway.domain.menu;
 import subway.management.LineManagement;
 
 public enum LineMenu {
-	ONE("1") {
+	ADD_LINE("1") {
 		public void selectMenu() {
 			LineManagement.addLine();
 		}
-	}, TWO("2") {
+	}, DELETE_LINE("2") {
 		public void selectMenu() {
 			LineManagement.deleteLineByName();
 		}
-	}, THREE("3") {
+	}, LOOK_UP_LINE("3") {
 		public void selectMenu() {
 			LineManagement.lookupLines();
 		}

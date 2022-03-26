@@ -3,11 +3,11 @@ package subway.domain.menu;
 import subway.management.SectionManagement;
 
 public enum SectionMenu {
-	ONE("1") {
+	ADD_SECTION("1") {
 		public void selectMenu() {
 			SectionManagement.addSection();
 		}
-	}, TWO("2") {
+	}, DELETE_SECTION("2") {
 		public void selectMenu() {
 			SectionManagement.deleteStationByNameInSection();
 		}

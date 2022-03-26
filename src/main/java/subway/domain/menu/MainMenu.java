@@ -6,22 +6,22 @@ import subway.management.StationManagement;
 
 public enum MainMenu {
 
-	ONE("1") {
+	STATION_MANAGEMENT_MENU("1") {
 		public int selectMenu() {
 			StationManagement.selectStationManagement();
 			return Code.NORMAL_CODE;
 		}
-	}, TWO("2") {
+	}, LINE_MANAGEMENT_MENU("2") {
 		public int selectMenu() {
 			LineManagement.selectLineManagement();
 			return Code.NORMAL_CODE;
 		}
-	}, THREE("3") {
+	}, SECTION_MANAGEMENT_MENU("3") {
 		public int selectMenu() {
 			SectionManagement.selectSectionManagement();
 			return Code.NORMAL_CODE;
 		}
-	}, FORE("4") {
+	}, PRINT_SUBWAY_ROOT_MAP("4") {
 		public int selectMenu() {
 			SectionManagement.printSubwayRouteMap();
 			return Code.NORMAL_CODE;

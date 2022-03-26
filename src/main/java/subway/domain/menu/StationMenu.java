@@ -3,15 +3,15 @@ package subway.domain.menu;
 import subway.management.StationManagement;
 
 public enum StationMenu {
-	ONE("1") {
+	ADD_STATION("1") {
 		public void selectMenu() {
 			StationManagement.addStation();
 		}
-	}, TWO("2") {
+	}, DELETE_STATION("2") {
 		public void selectMenu() {
 			StationManagement.deleteStation();
 		}
-	}, THREE("3") {
+	}, LOOK_UP_ALL_STATION("3") {
 		public void selectMenu() {
 			StationManagement.lookupStation();
 		}
