@@ -29,7 +29,6 @@ public enum MainMenu {
 		}
 	}, QUIT("Q") {
 		public int selectMenu() {
-			System.exit(0);
 			return Code.EXIT_CODE;
 		}
 
