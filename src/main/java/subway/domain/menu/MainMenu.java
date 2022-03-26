@@ -5,26 +5,33 @@ import subway.management.SectionManagement;
 import subway.management.StationManagement;
 
 public enum MainMenu {
+
 	ONE("1") {
-		public void selectMenu() {
+		public int selectMenu() {
 			StationManagement.selectStationManagement();
+			return Code.NORMAL_CODE;
 		}
 	}, TWO("2") {
-		public void selectMenu() {
+		public int selectMenu() {
 			LineManagement.selectLineManagement();
+			return Code.NORMAL_CODE;
 		}
 	}, THREE("3") {
-		public void selectMenu() {
+		public int selectMenu() {
 			SectionManagement.selectSectionManagement();
+			return Code.NORMAL_CODE;
 		}
 	}, FORE("4") {
-		public void selectMenu() {
+		public int selectMenu() {
 			SectionManagement.printSubwayRouteMap();
+			return Code.NORMAL_CODE;
 		}
 	}, QUIT("Q") {
-		public void selectMenu() {
+		public int selectMenu() {
 			System.exit(0);
+			return Code.EXIT_CODE;
 		}
+
 	};
 
 	MainMenu(String value) {
@@ -33,7 +40,7 @@ public enum MainMenu {
 
 	private final String value;
 
-	public abstract void selectMenu();
+	public abstract int selectMenu();
 
 	public static MainMenu findMenu(String input) {
 		MainMenu[] menus = MainMenu.values();
@@ -43,6 +50,11 @@ public enum MainMenu {
 			}
 		}
 		return null;
+	}
+
+	class Code {
+		public static final int EXIT_CODE = -1;
+		public static final int NORMAL_CODE = 0;
 	}
 
 }

@@ -7,15 +7,17 @@ import subway.handler.view.MainView;
 
 public class MainController {
 
-	public static void selectMain() {
+	public static final int ERROR_CODE = 1;
+
+	public static int selectMain() {
 		MainView.printMenu();
 		MainView.printSelect();
 		MainMenu selectMenu = MainMenu.findMenu(InputHandler.input());
 		if (selectMenu == null) {
 			ErrorView.printNotSelectMenu();
-			return;
+			return ERROR_CODE;
 		}
-		selectMenu.selectMenu();
+		return selectMenu.selectMenu();
 	}
 
 }
