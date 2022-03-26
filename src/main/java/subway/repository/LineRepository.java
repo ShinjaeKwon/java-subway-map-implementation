@@ -21,15 +21,15 @@ public class LineRepository {
 		stationList.remove(deleteStation);
 	}
 
-	public List<Line> lines() {
+	public static List<Line> lines() {
 		return Collections.unmodifiableList(lines);
 	}
 
-	public void addLine(Line line) {
+	public static void addLine(Line line) {
 		lines.add(line);
 	}
 
-	public boolean deleteLineByName(String name) {
+	public static boolean deleteLineByName(String name) {
 		return lines.removeIf(line -> Objects.equals(line.getName(), name));
 	}
 
@@ -43,11 +43,15 @@ public class LineRepository {
 	}
 
 	public static Line findLine(String lineName) {
-		return lines.stream().filter(station -> station.getName().equals(lineName)).findFirst().orElse(null);
+		return lines.stream()
+			.filter(station -> station.getName().equals(lineName))
+			.findFirst()
+			.orElse(null);
 	}
 
 	public static boolean findExistLineName(String name) {
-		return lines.stream().anyMatch(line -> line.getName().equals(name));
+		return lines.stream()
+			.anyMatch(line -> line.getName().equals(name));
 	}
 
 }

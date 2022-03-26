@@ -1,5 +1,6 @@
 package subway.domain.menu;
 
+import subway.handler.view.MainView;
 import subway.management.LineManagement;
 import subway.management.SectionManagement;
 import subway.management.StationManagement;
@@ -23,7 +24,7 @@ public enum MainMenu {
 		}
 	}, PRINT_SUBWAY_ROOT_MAP("4") {
 		public int selectMenu() {
-			SectionManagement.printSubwayRouteMap();
+			MainView.printSubwayRouteMap();
 			return Code.NORMAL_CODE;
 		}
 	}, QUIT("Q") {

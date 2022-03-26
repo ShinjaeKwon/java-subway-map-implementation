@@ -4,6 +4,7 @@ import java.util.List;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.repository.LineRepository;
 
 public class MainView {
 
@@ -81,4 +82,19 @@ public class MainView {
 	public static void printSubWayRootMapToStation(Station station) {
 		System.out.println(PREFIX_INFO + station.getName());
 	}
+
+	public static void printSubwayRouteMap() {
+		List<Line> lines = LineRepository.getLines();
+		MainView.printSubwayRootMap();
+		for (Line line : lines) {
+			MainView.printSubwayRootMapToLine(line);
+			MainView.printDividingLine();
+			List<Station> stationList = line.getStationList();
+			for (Station station : stationList) {
+				MainView.printSubWayRootMapToStation(station);
+			}
+			System.out.println();
+		}
+	}
+
 }

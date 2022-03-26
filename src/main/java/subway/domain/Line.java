@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-	private String name;
+	private final String name;
 
-	private List<Station> stationList;
+	private final List<Station> stationList;
 
 	public Line(String name) {
 		this.name = name;

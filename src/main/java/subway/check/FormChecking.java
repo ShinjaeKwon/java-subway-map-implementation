@@ -9,6 +9,7 @@ import subway.repository.StationRepository;
 public class FormChecking {
 
 	private static final int LENGTH_STANDARD = 2;
+	public static final int LINE_INCLUDE_STATION_NUMBER = 2;
 
 	public static boolean checkLineNameLength(String input) {
 		return input.length() < LENGTH_STANDARD;
@@ -18,23 +19,17 @@ public class FormChecking {
 		return input.length() < LENGTH_STANDARD;
 	}
 
-	public static boolean checkNull(Object input) {
-		return input == null;
-	}
-
-	public static boolean checkNull(String inputLineName, String inputStationName, Integer order) {
-		if (checkNull(inputLineName) || checkNull(inputStationName) || checkNull(order)) {
-			return true;
+	public static boolean checkNull(Object... inputs) {
+		for (Object input : inputs) {
+			if (input == null) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public static boolean nullCheckAscendAndDescend(Station ascend, Station descend) {
-		if (ascend == null) {
-			ErrorView.printNotExistStation();
-			return false;
-		}
-		if (ascend == null) {
+		if (ascend == null || descend == null) {
 			ErrorView.printNotExistStation();
 			return false;
 		}
@@ -61,6 +56,6 @@ public class FormChecking {
 
 	public static boolean checkSectionInLineLength(String inputLineName) {
 		Line checkLine = LineRepository.findLine(inputLineName);
-		return checkLine.getStationList().size() <= 2;
+		return checkLine.getStationList().size() <= LINE_INCLUDE_STATION_NUMBER;
 	}
 }

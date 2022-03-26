@@ -15,8 +15,6 @@ import subway.repository.StationRepository;
 
 public class LineManagement {
 
-	private static final LineRepository lineRepository = new LineRepository();
-
 	public static void addLine() {
 		InputView.printInputAddLine();
 		String inputLineName = InputHandler.input();
@@ -24,12 +22,12 @@ public class LineManagement {
 			ErrorView.printLineLengthError();
 			return;
 		}
-		if (lineRepository.findExistLineName(inputLineName)) {
+		if (LineRepository.findExistLineName(inputLineName)) {
 			ErrorView.printAlreadyLineName();
 			return;
 		}
 		Line line = new Line(inputLineName);
-		lineRepository.addLine(line);
+		LineRepository.addLine(line);
 		setAscendStationAndDescendStation(line);
 	}
 
@@ -43,18 +41,18 @@ public class LineManagement {
 		if (!FormChecking.nullCheckAscendAndDescend(ascend, descend)) {
 			return;
 		}
-		lineRepository.addStationInLine(ascend, descend, line.getName());
+		LineRepository.addStationInLine(ascend, descend, line.getName());
 		SuccessView.printSuccessAddLine();
 	}
 
 	public static void lookupLines() {
-		MainView.printLines(lineRepository.lines());
+		MainView.printLines(LineRepository.lines());
 	}
 
 	public static void deleteLineByName() {
 		RemoveView.printDeleteLine();
 		String inputLineName = InputHandler.input();
-		if (!lineRepository.deleteLineByName(inputLineName)) {
+		if (!LineRepository.deleteLineByName(inputLineName)) {
 			ErrorView.printNotExistLine();
 			return;
 		}

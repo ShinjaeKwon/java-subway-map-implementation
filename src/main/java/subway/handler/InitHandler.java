@@ -10,24 +10,21 @@ import subway.repository.StationRepository;
 
 public class InitHandler {
 
-	private static StationRepository stationRepository = new StationRepository();
-	private static LineRepository lineRepository = new LineRepository();
-
 	public static void initStation() {
-		stationRepository.stations.add(new Station("교대역"));
-		stationRepository.stations.add(new Station("강남역"));
-		stationRepository.stations.add(new Station("역삼역"));
-		stationRepository.stations.add(new Station("남부터미널역"));
-		stationRepository.stations.add(new Station("양재역"));
-		stationRepository.stations.add(new Station("양재시민의숲역"));
-		stationRepository.stations.add(new Station("매봉역"));
+		StationRepository.stations.add(new Station("교대역"));
+		StationRepository.stations.add(new Station("강남역"));
+		StationRepository.stations.add(new Station("역삼역"));
+		StationRepository.stations.add(new Station("남부터미널역"));
+		StationRepository.stations.add(new Station("양재역"));
+		StationRepository.stations.add(new Station("양재시민의숲역"));
+		StationRepository.stations.add(new Station("매봉역"));
 		initLine();
 	}
 
 	private static void initLine() {
-		lineRepository.lines.add(new Line("2호선"));
-		lineRepository.lines.add(new Line("3호선"));
-		lineRepository.lines.add(new Line("신분당선"));
+		LineRepository.lines.add(new Line("2호선"));
+		LineRepository.lines.add(new Line("3호선"));
+		LineRepository.lines.add(new Line("신분당선"));
 		initSection();
 	}
 

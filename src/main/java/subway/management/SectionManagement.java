@@ -17,6 +17,9 @@ import subway.repository.StationRepository;
 
 public class SectionManagement {
 
+	public static final int ERROR_ORDER_LENGTH = 1;
+	public static final int FIRST_IDX = 0;
+
 	public static void addSection() {
 		String inputLineName = addSectionSetLine();
 		String inputStationName = addSectionSetStation();
@@ -32,7 +35,7 @@ public class SectionManagement {
 	}
 
 	private static boolean checkLastStation(Integer order, Line line) {
-		if (order >= line.getStationList().size() || order < 1) {
+		if (order >= line.getStationList().size() || order < ERROR_ORDER_LENGTH) {
 			ErrorView.printAddSectionError();
 			return true;
 		}
@@ -43,13 +46,17 @@ public class SectionManagement {
 		List<Line> lines = LineRepository.getLines();
 		for (Line line : lines) {
 			List<Station> stationList = line.getStationList();
-			if (stationList.get(0).equals(inputStation) || stationList.get(stationList.size() - 1)
+			if (stationList.get(FIRST_IDX).equals(inputStation) || stationList.get(getLastIdx(stationList))
 				.equals(inputStation)) {
 				return true;
 			}
 		}
 		ErrorView.printForkedLoadError();
 		return false;
+	}
+
+	private static int getLastIdx(List<Station> stationList) {
+		return stationList.size() - 1;
 	}
 
 	private static Integer addSectionSetOrder() {
@@ -130,20 +137,6 @@ public class SectionManagement {
 			return;
 		}
 		selectMenu.selectMenu();
-	}
-
-	public static void printSubwayRouteMap() {
-		List<Line> lines = LineRepository.getLines();
-		MainView.printSubwayRootMap();
-		for (Line line : lines) {
-			MainView.printSubwayRootMapToLine(line);
-			MainView.printDividingLine();
-			List<Station> stationList = line.getStationList();
-			for (Station station : stationList) {
-				MainView.printSubWayRootMapToStation(station);
-			}
-			System.out.println();
-		}
 	}
 
 }

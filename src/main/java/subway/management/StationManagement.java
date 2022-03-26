@@ -13,8 +13,6 @@ import subway.repository.StationRepository;
 
 public class StationManagement {
 
-	private static final StationRepository stationRepository = new StationRepository();
-
 	public static void addStation() {
 		InputView.printInputAddStation();
 		String inputStationName = InputHandler.input();
@@ -22,22 +20,22 @@ public class StationManagement {
 			ErrorView.printStationLengthError();
 			return;
 		}
-		if (stationRepository.findExistStationName(inputStationName)) {
+		if (StationRepository.findExistStationName(inputStationName)) {
 			ErrorView.printAlreadyStationName();
 			return;
 		}
-		stationRepository.addStation(new Station(inputStationName));
+		StationRepository.addStation(new Station(inputStationName));
 		SuccessView.printSuccessAddStation();
 	}
 
 	public static void lookupStation() {
-		MainView.printStations(stationRepository.stations());
+		MainView.printStations(StationRepository.stations());
 	}
 
 	public static void deleteStation() {
 		RemoveView.printDeleteStation();
 		String inputStationName = InputHandler.input();
-		if (!stationRepository.deleteStation(inputStationName)) {
+		if (!StationRepository.deleteStation(inputStationName)) {
 			ErrorView.printNotExistStation();
 			return;
 		}
