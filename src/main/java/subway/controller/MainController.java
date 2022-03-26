@@ -12,12 +12,12 @@ public class MainController {
 	public static int selectMain() {
 		MainView.printMenu();
 		MainView.printSelect();
-		MainMenu selectMenu = MainMenu.findMenu(InputHandler.input());
-		if (selectMenu == null) {
+		MainMenu selectMainMenu = MainMenu.findMenu(InputHandler.input());
+		if (selectMainMenu == null) {
 			ErrorView.printNotSelectMenu();
 			return ERROR_CODE;
 		}
-		return selectMenu.selectMenu();
+		return selectMainMenu.selectMenu();
 	}
 
 }
