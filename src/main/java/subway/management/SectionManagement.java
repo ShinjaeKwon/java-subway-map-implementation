@@ -7,7 +7,11 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.menu.SectionMenu;
 import subway.handler.InputHandler;
-import subway.handler.PrintHandler;
+import subway.handler.view.ErrorView;
+import subway.handler.view.InputView;
+import subway.handler.view.MainView;
+import subway.handler.view.RemoveView;
+import subway.handler.view.SuccessView;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
@@ -24,12 +28,12 @@ public class SectionManagement {
 			return;
 		}
 		line.addStationOrder(station, order);
-		PrintHandler.printSuccessAddSection();
+		SuccessView.printSuccessAddSection();
 	}
 
 	private static boolean checkLastStation(Integer order, Line line) {
 		if (order >= line.getStationList().size() || order < 1) {
-			PrintHandler.printAddSectionError();
+			ErrorView.printAddSectionError();
 			return true;
 		}
 		return false;
@@ -44,32 +48,32 @@ public class SectionManagement {
 				return true;
 			}
 		}
-		PrintHandler.printForkedLoadError();
+		ErrorView.printForkedLoadError();
 		return false;
 	}
 
 	private static Integer addSectionSetOrder() {
-		PrintHandler.printInputStationOrder();
+		InputView.printInputStationOrder();
 		String inputStationOrder = InputHandler.input();
 		if (!FormChecking.checkNumber(inputStationOrder)) {
-			PrintHandler.printInputNumber();
+			ErrorView.printInputNumber();
 			return null;
 		}
 		return Integer.parseInt(inputStationOrder);
 	}
 
 	private static String addSectionSetStation() {
-		PrintHandler.printInputStation();
+		InputView.printInputStation();
 		String inputStationName = InputHandler.input();
 		if (!FormChecking.checkExistStation(inputStationName)) {
-			PrintHandler.printNotExistStation();
+			ErrorView.printNotExistStation();
 			return null;
 		}
 		return inputStationName;
 	}
 
 	private static String addSectionSetLine() {
-		PrintHandler.printInputLine();
+		InputView.printInputLine();
 		String inputLineName = InputHandler.input();
 		if (isExistLine(inputLineName))
 			return null;
@@ -78,14 +82,14 @@ public class SectionManagement {
 
 	private static boolean isExistLine(String inputLineName) {
 		if (!FormChecking.checkExistLine(inputLineName)) {
-			PrintHandler.printNotExistLine();
+			ErrorView.printNotExistLine();
 			return true;
 		}
 		return false;
 	}
 
 	public static String deleteSectionCheckLine() {
-		PrintHandler.printDeleteLineInSection();
+		RemoveView.printDeleteLineInSection();
 		String inputLineName = InputHandler.input();
 		if (isExistLine(inputLineName)) {
 			return null;
@@ -94,10 +98,10 @@ public class SectionManagement {
 	}
 
 	private static String deleteSectionCheckStation() {
-		PrintHandler.printDeleteStationInLine();
+		RemoveView.printDeleteStationInLine();
 		String inputStationName = InputHandler.input();
 		if (!FormChecking.checkExistStation(inputStationName)) {
-			PrintHandler.printNotExistStation();
+			ErrorView.printNotExistStation();
 			return null;
 		}
 		return inputStationName;
@@ -108,20 +112,20 @@ public class SectionManagement {
 		String inputStationName = deleteSectionCheckStation();
 
 		if (FormChecking.checkSectionInLineLength(inputLineName)) {
-			PrintHandler.printDeleteStationInLineError();
+			ErrorView.printDeleteStationInLineError();
 		}
 		Line deleteLine = LineRepository.findLine(inputLineName);
 		Station deleteStation = StationRepository.findStation(inputStationName);
 		LineRepository.deleteStationInLine(deleteLine, deleteStation);
-		PrintHandler.printSuccessDeleteStationInLine();
+		SuccessView.printSuccessDeleteStationInLine();
 	}
 
 	public static void selectSectionManagement() {
-		PrintHandler.printSectionMenu();
-		PrintHandler.printSelect();
+		MainView.printSectionMenu();
+		MainView.printSelect();
 		SectionMenu selectMenu = SectionMenu.findSectionMenu(InputHandler.input());
 		if (selectMenu == null) {
-			PrintHandler.printNotSelectMenu();
+			ErrorView.printNotSelectMenu();
 			selectSectionManagement();
 			return;
 		}
@@ -130,13 +134,13 @@ public class SectionManagement {
 
 	public static void printSubwayRouteMap() {
 		List<Line> lines = LineRepository.getLines();
-		PrintHandler.printSubwayRootMap();
+		MainView.printSubwayRootMap();
 		for (Line line : lines) {
-			PrintHandler.printSubwayRootMapToLine(line);
-			PrintHandler.printDividingLine();
+			MainView.printSubwayRootMapToLine(line);
+			MainView.printDividingLine();
 			List<Station> stationList = line.getStationList();
 			for (Station station : stationList) {
-				PrintHandler.printSubWayRootMapToStation(station);
+				MainView.printSubWayRootMapToStation(station);
 			}
 			System.out.println();
 		}

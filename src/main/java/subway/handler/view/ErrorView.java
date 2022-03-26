@@ -14,4 +14,48 @@ public class ErrorView {
 	public static final String ERROR_FAILED_DELETE_STATION_IN_LINE = "[ERROR] 노선에 포함된 역이 두개 이하입니다.\n";
 	public static final String ERROR_FORKED_LOAD = "[ERROR] 노선이 갈래길이 됩니다.\n";
 
+	public static void printDeleteStationInLineError() {
+		System.out.println(ErrorView.ERROR_FAILED_DELETE_STATION_IN_LINE);
+	}
+
+	public static void printAddSectionError() {
+		System.out.println(ErrorView.ERROR_NOT_ADD_SECTION);
+	}
+
+	public static void printInputNumber() {
+		System.out.println(ErrorView.ERROR_NOT_NUMBER);
+	}
+
+	public static void printLineLengthError() {
+		System.out.println(ErrorView.ERROR_LINE_LENGTH);
+	}
+
+	public static void printStationLengthError() {
+		System.out.println(ErrorView.ERROR_STATION_LENGTH);
+	}
+
+	public static void printAlreadyStationName() {
+		System.out.println(ErrorView.ERROR_ALREADY_STATION_NAME);
+	}
+
+	public static void printAlreadyLineName() {
+		System.out.println(ErrorView.ERROR_ALREADY_LINE_NAME);
+	}
+
+	public static void printNotSelectMenu() {
+		System.out.println(ErrorView.ERROR_NOT_SELECT_MENU);
+	}
+
+	public static void printNotExistLine() {
+		System.out.println(ErrorView.ERROR_NOT_EXIST_LINE);
+	}
+
+	public static void printNotExistStation() {
+		System.out.println(ErrorView.ERROR_NOT_EXIST_STATION);
+	}
+
+	public static void printForkedLoadError() {
+		System.out.println(ErrorView.ERROR_FORKED_LOAD);
+
+	}
 }

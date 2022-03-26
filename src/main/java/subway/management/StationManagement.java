@@ -4,7 +4,11 @@ import subway.check.FormChecking;
 import subway.domain.Station;
 import subway.domain.menu.StationMenu;
 import subway.handler.InputHandler;
-import subway.handler.PrintHandler;
+import subway.handler.view.ErrorView;
+import subway.handler.view.InputView;
+import subway.handler.view.MainView;
+import subway.handler.view.RemoveView;
+import subway.handler.view.SuccessView;
 import subway.repository.StationRepository;
 
 public class StationManagement {
@@ -12,40 +16,40 @@ public class StationManagement {
 	private static final StationRepository stationRepository = new StationRepository();
 
 	public static void addStation() {
-		PrintHandler.printInputAddStation();
+		InputView.printInputAddStation();
 		String inputStationName = InputHandler.input();
 		if (FormChecking.checkStationLength(inputStationName)) {
-			PrintHandler.printStationLengthError();
+			ErrorView.printStationLengthError();
 			return;
 		}
 		if (stationRepository.findExistStationName(inputStationName)) {
-			PrintHandler.printAlreadyStationName();
+			ErrorView.printAlreadyStationName();
 			return;
 		}
 		stationRepository.addStation(new Station(inputStationName));
-		PrintHandler.printSuccessAddStation();
+		SuccessView.printSuccessAddStation();
 	}
 
 	public static void lookupStation() {
-		PrintHandler.printStations(stationRepository.stations());
+		MainView.printStations(stationRepository.stations());
 	}
 
 	public static void deleteStation() {
-		PrintHandler.printDeleteStation();
+		RemoveView.printDeleteStation();
 		String inputStationName = InputHandler.input();
 		if (!stationRepository.deleteStation(inputStationName)) {
-			PrintHandler.printNotExistStation();
+			ErrorView.printNotExistStation();
 			return;
 		}
-		PrintHandler.printSuccessDeleteStation();
+		SuccessView.printSuccessDeleteStation();
 	}
 
 	public static void selectStationManagement() {
-		PrintHandler.printStationMenu();
-		PrintHandler.printSelect();
+		MainView.printStationMenu();
+		MainView.printSelect();
 		StationMenu selectMenu = StationMenu.findStationMenu(InputHandler.input());
 		if (selectMenu == null) {
-			PrintHandler.printNotSelectMenu();
+			ErrorView.printNotSelectMenu();
 			selectStationManagement();
 			return;
 		}

@@ -2,7 +2,7 @@ package subway.check;
 
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.handler.PrintHandler;
+import subway.handler.view.ErrorView;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
@@ -31,11 +31,11 @@ public class FormChecking {
 
 	public static boolean nullCheckAscendAndDescend(Station ascend, Station descend) {
 		if (ascend == null) {
-			PrintHandler.printNotExistStation();
+			ErrorView.printNotExistStation();
 			return false;
 		}
 		if (ascend == null) {
-			PrintHandler.printNotExistStation();
+			ErrorView.printNotExistStation();
 			return false;
 		}
 		return true;

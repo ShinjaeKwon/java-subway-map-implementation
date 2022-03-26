@@ -5,7 +5,11 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.menu.LineMenu;
 import subway.handler.InputHandler;
-import subway.handler.PrintHandler;
+import subway.handler.view.ErrorView;
+import subway.handler.view.InputView;
+import subway.handler.view.MainView;
+import subway.handler.view.RemoveView;
+import subway.handler.view.SuccessView;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
@@ -14,14 +18,14 @@ public class LineManagement {
 	private static final LineRepository lineRepository = new LineRepository();
 
 	public static void addLine() {
-		PrintHandler.printInputAddLine();
+		InputView.printInputAddLine();
 		String inputLineName = InputHandler.input();
 		if (FormChecking.checkLineNameLength(inputLineName)) {
-			PrintHandler.printLineLengthError();
+			ErrorView.printLineLengthError();
 			return;
 		}
 		if (lineRepository.findExistLineName(inputLineName)) {
-			PrintHandler.printAlreadyLineName();
+			ErrorView.printAlreadyLineName();
 			return;
 		}
 		Line line = new Line(inputLineName);
@@ -30,9 +34,9 @@ public class LineManagement {
 	}
 
 	private static void setAscendStationAndDescendStation(Line line) {
-		PrintHandler.printInputAddLineAscend();
+		InputView.printInputAddLineAscend();
 		String ascendName = InputHandler.input();
-		PrintHandler.printInputAddLineDescend();
+		InputView.printInputAddLineDescend();
 		String descendName = InputHandler.input();
 		Station ascend = StationRepository.findStation(ascendName);
 		Station descend = StationRepository.findStation(descendName);
@@ -40,29 +44,29 @@ public class LineManagement {
 			return;
 		}
 		lineRepository.addStationInLine(ascend, descend, line.getName());
-		PrintHandler.printSuccessAddLine();
+		SuccessView.printSuccessAddLine();
 	}
 
 	public static void lookupLines() {
-		PrintHandler.printLines(lineRepository.lines());
+		MainView.printLines(lineRepository.lines());
 	}
 
 	public static void deleteLineByName() {
-		PrintHandler.printDeleteLine();
+		RemoveView.printDeleteLine();
 		String inputLineName = InputHandler.input();
 		if (!lineRepository.deleteLineByName(inputLineName)) {
-			PrintHandler.printNotExistLine();
+			ErrorView.printNotExistLine();
 			return;
 		}
-		PrintHandler.printSuccessDeleteLine();
+		SuccessView.printSuccessDeleteLine();
 	}
 
 	public static void selectLineManagement() {
-		PrintHandler.printLineMenu();
-		PrintHandler.printSelect();
+		MainView.printLineMenu();
+		MainView.printSelect();
 		LineMenu selectMenu = LineMenu.findLineMenu(InputHandler.input());
 		if (selectMenu == null) {
-			PrintHandler.printNotSelectMenu();
+			ErrorView.printNotSelectMenu();
 			selectLineManagement();
 			return;
 		}

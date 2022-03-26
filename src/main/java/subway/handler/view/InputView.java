@@ -10,4 +10,32 @@ public class InputView {
 	public static final String INPUT_STATION_ORDER = "## 순서를 입력하세요.";
 	public static final String INPUT_ADD_LINE = "## 등록할 노선 이름을 입력하세요";
 
+	public static void printInputAddStation() {
+		System.out.println(InputView.INPUT_ADD_STATION);
+	}
+
+	public static void printInputAddLine() {
+		System.out.println(InputView.INPUT_ADD_LINE);
+	}
+
+	public static void printInputAddLineAscend() {
+		System.out.println(InputView.INPUT_ADD_LINE_ASCEND);
+	}
+
+	public static void printInputAddLineDescend() {
+		System.out.println(InputView.INPUT_ADD_LINE_DESCEND);
+	}
+
+	public static void printInputLine() {
+		System.out.println(InputView.INPUT_LINE);
+	}
+
+	public static void printInputStation() {
+		System.out.println(InputView.INPUT_STATION);
+	}
+
+	public static void printInputStationOrder() {
+		System.out.println(InputView.INPUT_STATION_ORDER);
+	}
+
 }

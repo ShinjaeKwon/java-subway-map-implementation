@@ -2,16 +2,17 @@ package subway.controller;
 
 import subway.domain.menu.MainMenu;
 import subway.handler.InputHandler;
-import subway.handler.PrintHandler;
+import subway.handler.view.ErrorView;
+import subway.handler.view.MainView;
 
 public class MainController {
 
 	public static void selectMain() {
-		PrintHandler.printMenu();
-		PrintHandler.printSelect();
+		MainView.printMenu();
+		MainView.printSelect();
 		MainMenu selectMenu = MainMenu.findMenu(InputHandler.input());
 		if (selectMenu == null) {
-			PrintHandler.printNotSelectMenu();
+			ErrorView.printNotSelectMenu();
 			return;
 		}
 		selectMenu.selectMenu();
