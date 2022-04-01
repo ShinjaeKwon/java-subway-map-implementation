@@ -13,6 +13,8 @@ public class ErrorView {
 	public static final String ERROR_NOT_ADD_SECTION = "[ERROR] 종점 전,후의 위치에는 역을 추가할 수 없습니다.\n";
 	public static final String ERROR_FAILED_DELETE_STATION_IN_LINE = "[ERROR] 노선에 포함된 역이 두개 이하입니다.\n";
 	public static final String ERROR_FORKED_LOAD = "[ERROR] 노선이 갈래길이 됩니다.\n";
+	public static final String ERROR_STATION_END_CHAR_NOT_STATION = "[ERROR] 입력된 역의 이름은 역으로 끝나야 합니다.\n";
+	public static final String ERROR_STATION_END_CHAR_NOT_LINE = "[ERROR] 입력된 노선의 이름은 선으로 끝나야 합니다.\n";
 
 	public static void printDeleteStationInLineError() {
 		System.out.println(ErrorView.ERROR_FAILED_DELETE_STATION_IN_LINE);
@@ -24,14 +26,6 @@ public class ErrorView {
 
 	public static void printInputNumber() {
 		System.out.println(ErrorView.ERROR_NOT_NUMBER);
-	}
-
-	public static void printLineLengthError() {
-		System.out.println(ErrorView.ERROR_LINE_LENGTH);
-	}
-
-	public static void printStationLengthError() {
-		System.out.println(ErrorView.ERROR_STATION_LENGTH);
 	}
 
 	public static void printAlreadyStationName() {

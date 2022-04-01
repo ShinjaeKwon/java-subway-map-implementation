@@ -21,13 +21,11 @@ public enum StationMenu {
 		}
 	};
 
+	private final String value;
+
 	StationMenu(String value) {
 		this.value = value;
 	}
-
-	private final String value;
-
-	public abstract void selectMenu();
 
 	public static StationMenu findStationMenu(String input) {
 		StationMenu[] menus = StationMenu.values();
@@ -38,5 +36,7 @@ public enum StationMenu {
 		}
 		return null;
 	}
+
+	public abstract void selectMenu();
 
 }

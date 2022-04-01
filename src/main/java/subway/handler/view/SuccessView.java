@@ -23,7 +23,6 @@ public class SuccessView {
 
 	public static void printSuccessDeleteStation() {
 		System.out.println(MainView.PREFIX_INFO + SuccessView.SUCCESS_DELETE_STATION);
-
 	}
 
 	public static void printSuccessAddSection() {

@@ -23,8 +23,6 @@ public enum LineMenu {
 
 	private final String value;
 
-	public abstract void selectMenu();
-
 	LineMenu(String value) {
 		this.value = value;
 	}
@@ -38,5 +36,7 @@ public enum LineMenu {
 		}
 		return null;
 	}
+
+	public abstract void selectMenu();
 
 }

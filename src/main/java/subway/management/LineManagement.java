@@ -18,10 +18,6 @@ public class LineManagement {
 	public static void addLine() {
 		InputView.printInputAddLine();
 		String inputLineName = InputHandler.input();
-		if (FormChecking.checkLineNameLength(inputLineName)) {
-			ErrorView.printLineLengthError();
-			return;
-		}
 		if (LineRepository.findExistLineName(inputLineName)) {
 			ErrorView.printAlreadyLineName();
 			return;

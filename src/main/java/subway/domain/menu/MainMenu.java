@@ -1,5 +1,7 @@
 package subway.domain.menu;
 
+import java.util.function.Supplier;
+
 import subway.handler.view.MainView;
 import subway.management.LineManagement;
 import subway.management.SectionManagement;
@@ -34,13 +36,12 @@ public enum MainMenu {
 
 	};
 
+	private final String value;
+	Supplier<Integer> action; //람다사용
+
 	MainMenu(String value) {
 		this.value = value;
 	}
-
-	private final String value;
-
-	public abstract int selectMenu();
 
 	public static MainMenu findMenu(String input) {
 		MainMenu[] menus = MainMenu.values();
@@ -52,7 +53,9 @@ public enum MainMenu {
 		return null;
 	}
 
-	class Code {
+	public abstract int selectMenu();
+
+	class Code { //상태로 Enum, exception  던지게
 		public static final int EXIT_CODE = -1;
 		public static final int NORMAL_CODE = 0;
 	}

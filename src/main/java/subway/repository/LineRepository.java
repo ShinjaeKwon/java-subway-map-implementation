@@ -12,10 +12,6 @@ public class LineRepository {
 
 	public static final List<Line> lines = new ArrayList<>();
 
-	public static List<Line> getLines() {
-		return lines;
-	}
-
 	public static void deleteStationInLine(Line deleteLine, Station deleteStation) {
 		List<Station> stationList = deleteLine.getStationList();
 		stationList.remove(deleteStation);

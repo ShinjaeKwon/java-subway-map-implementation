@@ -4,18 +4,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import subway.domain.Station;
+import subway.handler.view.ErrorView;
 
 public class StationRepository {
 
-	public static final List<Station> stations = new ArrayList<>();
+	private static final List<Station> stations = new ArrayList<>();
 
 	public static List<Station> stations() {
 		return Collections.unmodifiableList(stations);
 	}
 
 	public static void addStation(Station station) {
+		Optional<Station> any = stations.stream()
+			.filter(it -> it.getName().equals(station.getName()))
+			.findAny();
+		if (any.isPresent()) {
+			throw new IllegalArgumentException(ErrorView.ERROR_ALREADY_STATION_NAME);
+		}
 		stations.add(station);
 	}
 

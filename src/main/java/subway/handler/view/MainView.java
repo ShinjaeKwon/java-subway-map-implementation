@@ -84,7 +84,7 @@ public class MainView {
 	}
 
 	public static void printSubwayRouteMap() {
-		List<Line> lines = LineRepository.getLines();
+		List<Line> lines = LineRepository.lines();
 		MainView.printSubwayRootMap();
 		for (Line line : lines) {
 			MainView.printSubwayRootMapToLine(line);

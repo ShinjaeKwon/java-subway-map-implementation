@@ -1,6 +1,5 @@
 package subway.management;
 
-import subway.check.FormChecking;
 import subway.domain.Station;
 import subway.domain.menu.StationMenu;
 import subway.handler.InputHandler;
@@ -16,10 +15,6 @@ public class StationManagement {
 	public static void addStation() {
 		InputView.printInputAddStation();
 		String inputStationName = InputHandler.input();
-		if (FormChecking.checkStationLength(inputStationName)) {
-			ErrorView.printStationLengthError();
-			return;
-		}
 		if (StationRepository.findExistStationName(inputStationName)) {
 			ErrorView.printAlreadyStationName();
 			return;

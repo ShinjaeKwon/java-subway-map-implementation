@@ -10,22 +10,26 @@ import subway.repository.StationRepository;
 
 public class InitHandler {
 
-	public static void initStation() {
-		StationRepository.stations.add(new Station("교대역"));
-		StationRepository.stations.add(new Station("강남역"));
-		StationRepository.stations.add(new Station("역삼역"));
-		StationRepository.stations.add(new Station("남부터미널역"));
-		StationRepository.stations.add(new Station("양재역"));
-		StationRepository.stations.add(new Station("양재시민의숲역"));
-		StationRepository.stations.add(new Station("매봉역"));
+	public static void initialize() {
+		initStation();
 		initLine();
+		initSection();
+	}
+
+	private static void initStation() {
+		StationRepository.addStation(new Station("교대역"));
+		StationRepository.addStation(new Station("강남역"));
+		StationRepository.addStation(new Station("역삼역"));
+		StationRepository.addStation(new Station("남부터미널역"));
+		StationRepository.addStation(new Station("양재역"));
+		StationRepository.addStation(new Station("양재시민의숲역"));
+		StationRepository.addStation(new Station("매봉역"));
 	}
 
 	private static void initLine() {
 		LineRepository.lines.add(new Line("2호선"));
 		LineRepository.lines.add(new Line("3호선"));
 		LineRepository.lines.add(new Line("신분당선"));
-		initSection();
 	}
 
 	private static void initSection() {

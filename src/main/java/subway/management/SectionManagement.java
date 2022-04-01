@@ -43,7 +43,7 @@ public class SectionManagement {
 	}
 
 	private static boolean checkForkedLoad(Station inputStation) {
-		List<Line> lines = LineRepository.getLines();
+		List<Line> lines = LineRepository.lines();
 		for (Line line : lines) {
 			List<Station> stationList = line.getStationList();
 			if (stationList.get(FIRST_IDX).equals(inputStation) || stationList.get(getLastIdx(stationList))

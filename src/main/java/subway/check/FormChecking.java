@@ -8,16 +8,7 @@ import subway.repository.StationRepository;
 
 public class FormChecking {
 
-	private static final int LENGTH_STANDARD = 2;
 	public static final int LINE_INCLUDE_STATION_NUMBER = 2;
-
-	public static boolean checkLineNameLength(String input) {
-		return input.length() < LENGTH_STANDARD;
-	}
-
-	public static boolean checkStationLength(String input) {
-		return input.length() < LENGTH_STANDARD;
-	}
 
 	public static boolean checkNull(Object... inputs) {
 		for (Object input : inputs) {

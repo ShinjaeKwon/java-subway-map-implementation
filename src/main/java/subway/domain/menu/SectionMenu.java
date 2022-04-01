@@ -19,8 +19,6 @@ public enum SectionMenu {
 
 	private final String value;
 
-	public abstract void selectMenu();
-
 	SectionMenu(String value) {
 		this.value = value;
 	}
@@ -34,5 +32,7 @@ public enum SectionMenu {
 		}
 		return null;
 	}
+
+	public abstract void selectMenu();
 
 }
